@@ -1,0 +1,8 @@
+CrashHandlerTest是根据 任玉刚Android开发艺术探索第13章内容编写
+当crash发生时系统会调用UncaughtExceptionHandler的uncaughtException方法
+在该方法中获取到异常信息进行相应的处理，保存到sd卡或者上传到服务器
+另外可以在crash发生时弹出对话框告诉用户应用crash了，然后再退出应用
+1，通过实现UncaughtExceptionHandler定义自己的异常处理类
+2.重写uncaughtException方法
+由于默认异常处理器是Thread类的静态成员，因此它的作用对象是当前进程的所有线程
+只对未捕获的异常进行操作，catch的异常不会调用系统的异常处理器
