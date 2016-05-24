@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by admin on 2016/5/24.
+ * 用于捕获异常的handler
  */
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
     private static final String TAG = "CrashHandler";
@@ -47,6 +47,12 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     }
 
+    /**
+     * 必须重写该方法，程序有未被捕获的异常时会调用uncaughtException方法
+     *
+     * @param thread 出现未捕获异常的线程
+     * @param ex     未捕获的异常，通过它获取异常信息进行操作
+     */
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
         try {
@@ -65,7 +71,11 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         }
     }
 
+    /**
+     * 暂未实现
+     */
     private void updateExceptionToServer() {
+        //TODO 通过配置上传到对应的异常信息服务器
     }
 
     private void dumpExceptionToSDCard(Throwable ex) throws IOException {
@@ -121,7 +131,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         pw.println(Build.MANUFACTURER);
         //手机型号
         pw.print("Model: ");
-        pw.print(Build.MODEL);
+        pw.println(Build.MODEL);
 
         //手机CPU信息
         pw.print("CPU ABI:");
